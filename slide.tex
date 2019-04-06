@@ -1,0 +1,99 @@
+% !TeX spellcheck = it_IT
+\documentclass{beamer}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usetheme{Szeged}
+\usecolortheme{beaver}
+
+%\usepackage{libertine}
+%\usepackage{opensans}
+%\usepackage{quattrocento}
+
+\usepackage{inconsolata}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily}
+
+\usepackage{parskip}
+\usepackage{xcolor}
+
+\title[Ansible]{Lezione 1: Ansible}
+\subtitle{Corso GNU/Linux avanzato e tecnologie aperte primavera 2019}
+\author{quel\_tale}
+\institute{WEEE Open}
+\date[2019]{9 marzo 2019}
+
+\begin{document}
+	
+\frame{\titlepage}
+	
+\begin{frame}
+\frametitle{Gestione della configurazione}
+	Termine generale, applicazioni in vari campi dell'ingegneria.
+	
+	In ingegneria del software:
+	\newline
+	
+	\begin{quote}
+		A discipline applying technical and administrative direction and surveillance to: identify and document the functional and physical characteristics of a configuration item, control changes to those characteristics, record and report change processing and implementation status, and verify compliance with specified requirements.\footnote{ISO/IEC/IEEE 24765:2010 Systems and Software Engineering—Vocabulary, ISO/IEC/IEEE, 2010.}
+	\end{quote}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ma in pratica?}
+Controllare, sorvegliare e tracciare le modifiche effettuate a componenti configurabili di un sistema.
+
+Anche \textbf{SVN} e \textbf{git} sono software di gestione della configurazione:
+\begin{itemize}
+	\item Tracciano le modifiche effettuate sul codice sorgente
+	\item Il codice è un componente del sistema (software)
+	\item Il codice è configurabile (modificabile)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Quindi...}
+Ansible è un software di gestione della configurazione:
+\begin{itemize}
+	\item Controlla le modifiche effettuate ai file o ai database su un server
+	\item I file/database sono un componente del sistema (server)
+	\item I file/database sono configurabili (file di configurazione, etc...)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Un consiglio}
+
+``Versionate'' i file di Ansible con git, non ve ne pentirete!
+
+\vspace{2em}
+
+\begin{alertblock}{Per non reinventare la ruota}
+	\href{https://github.com/mattjbarlow/ansible-directory}{github.com/mattjbarlow/ansible-directory}
+\end{alertblock}
+
+\begin{alertblock}{Per creare ruoli}
+	\texttt{ansible-galaxy init nome-del-modulo}
+\end{alertblock}
+
+\begin{alertblock}{Per usare al meglio i ruoli standard}
+	\href{https://docs.ansible.com/ansible/latest/}{docs.ansible.com/ansible/latest/}
+\end{alertblock}
+
+\end{frame}
+
+\begin{frame}
+
+Fine.
+
+\end{frame}
+
+%\begin{frame}[fragile]
+%\begin{lstlisting}[frame=single]
+%- asd:
+%lel: lol
+%lilz: lolz
+%\end{lstlisting}
+
+\end{document}
