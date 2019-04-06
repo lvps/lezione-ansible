@@ -36,3 +36,4 @@
 pdfa.xmpi
 *.xmpdata
 .desktop
+*.retry

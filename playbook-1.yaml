@@ -1,0 +1,16 @@
+---
+# ansible-playbook -i inventario playbook-1.yaml
+- hosts: calcolatori
+  become: true
+  tasks:
+  - name: Ensure user 'fittizio'
+    user:
+      # https://docs.ansible.com/ansible/latest/modules/user_module.html
+      name: fittizio
+      group: users
+      comment: System user for Fittizio software
+      system: true
+      password: "$6$TkGclvyVl847NeuO$F9fsQ/VbMj29l4egyFKPB.lSpFvWdmfk2Zlp9U0xHoP1ipTu9gjoXMRgQkIqb.aIERVR3ecbsPsABuftYIlTY/"
+      create_home: false
+      #shell: /sbin/nologin
+      #state: absent
