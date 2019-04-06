@@ -24,10 +24,63 @@
 \institute{WEEE Open}
 \date[2019]{9 marzo 2019}
 
+\newcommand{\host}[1]{{\color{blue}{#1}}}
+\newcommand{\prompt}[1]{\textbf{#1}}
+
 \begin{document}
 	
 \frame{\titlepage}
+
+\begin{frame}[fragile]
+\frametitle{Metodo da disperati}
+\texttt{%
+\prompt{tu@\host{tuo-computer}\$} ssh server1.azienda.it\\
+\prompt{tu@\host{server1}\$} sudo useradd -Nr -g users fittizio\\
+\prompt{tu@\host{server1}\$} sudo passwd fittizio\\
+Nuova password: \\
+Reimmettere la nuova password: \\
+passwd: password aggiornata correttamente\\
+\prompt{tu@\host{server1}\$} exit\\
+\prompt{tu@\host{tuo-computer}\$} ssh server2.azienda.it\\
+\prompt{tu@\host{server2}\$} sudo useradd -Nr -g users fittizio\\
+...}
+\end{frame}
 	
+\begin{frame}[fragile]
+\frametitle{Metodo classico}
+\begin{lstlisting}[basicstyle=\tiny]
+#!/bin/bash
+
+for num in $(seq 1 100); do
+  ssh server${num}.azienda.it "sudo useradd -Nr -g users fittizio"
+  ssh server${num}.azienda.it "echo fittizio:asd | sudo chpasswd"
+done
+
+\end{lstlisting}
+
+\vspace{2em}
+
+Se dal fondo dell'aula non si vedesse: è uno script bash con un ``for'' che esegue comandi via ssh sui 100 server, in sequenza.
+
+{\tiny Nota: non ho provato lo script e non intendo provarlo}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Metodo che vedremo oggi}
+\begin{lstlisting}
+- name: Ensure user 'fittizio'
+  user:
+    name: fittizio
+    group: users
+    comment: System user for Fittizio software
+    system: true
+    password: $6$TkGclvyVl847NeuO$F9fsQ/VbMj29l4egyFKPB.lSpFvWdmfk2Zlp9U0xHoP1ipTu9gjoXMRgQkIqb.aIERVR3ecbsPsABuftYIlTY/
+    
+\end{lstlisting}
+
+{\small La password andava cifrata. Quello è l'hash.}
+\end{frame}
+
 \begin{frame}
 \frametitle{Gestione della configurazione}
 	Termine generale, applicazioni in vari campi dell'ingegneria.
@@ -63,13 +116,44 @@ Ansible è un software di gestione della configurazione:
 \end{frame}
 
 \begin{frame}
-\frametitle{Un consiglio}
+\frametitle{Breve storia}
+\textbf{Prima generazione: CFEngine (1993), Bcfg2 (2004)}
 
-``Versionate'' i file di Ansible con git, non ve ne pentirete!
+Mondo accademico, centralità di aspetti teorici, automazione e astrazione
 
-\vspace{2em}
+\textbf{Seconda generazione: Puppet (2005), Chef (2009)}
 
-\begin{alertblock}{Per non reinventare la ruota}
+Aziende, semplificare la vita ai sistemisti, deployment su larga scala
+
+\textbf{Terza generazione: Ansible (2009), Salt (2011)}
+
+Semplicità di sviluppo, velocità, automazione anche parziale ``basta che si faccia''
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Perché Ansible?}
+
+\textbf{Facile da iniziare a usare}: agentless, playbook ``lineari'', automazione anche parziale della configurazione, sintassi in formati standard e noti (YAML, Jinja2)
+
+\textbf{Largamente supportato}: può configurare praticamente qualsiasi distribuzione GNU/Linux, BSD, Windows, OS X, router professionali, container (Docker), etc...
+
+\textbf{Comunità attiva}: molti ruoli disponibili su Ansible Galaxy, manuale dettagliato e con molti esempi
+
+Tuttavia, alcuni svantaggi: velocità limitata, non perfettamente idempotente e dichiarativo, ``drift'' della configurazione (modello push)
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Consigli finali}
+
+Leggete il manuale e cercate su Internet, prima di reinventare la ruota.
+
+``Versionate'' i playbook e i ruoli con git.
+
+\vspace{1em}
+
+\begin{alertblock}{Un buon punto di partenza}
 	\href{https://github.com/mattjbarlow/ansible-directory}{github.com/mattjbarlow/ansible-directory}
 \end{alertblock}
 
