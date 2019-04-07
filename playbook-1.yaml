@@ -1,6 +1,7 @@
 ---
 # ansible-playbook -i inventario playbook-1.yaml
-- hosts: calcolatori
+- name: Esempio 1
+  hosts: calcolatori
   become: true
   tasks:
   - name: Ensure user 'fittizio'
