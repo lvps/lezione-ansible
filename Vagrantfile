@@ -2,7 +2,7 @@ Vagrant.configure("2") do |vagrant|
 
   ENV["LC_ALL"] = "en_US.UTF-8"
 
-  vagrant.vm.define "ro" do |config|
+  vagrant.vm.define "vm1" do |config|
 	  config.vm.box = "ubuntu/bionic64"
 	  config.vm.hostname = "vm1.example.local"
 
@@ -24,7 +24,7 @@ Vagrant.configure("2") do |vagrant|
 # 	  end
   end
 
-  vagrant.vm.define "rw" do |config|
+  vagrant.vm.define "vm2" do |config|
 	  config.vm.box = "ubuntu/bionic64"
 	  config.vm.hostname = "vm1.example.local"
 
