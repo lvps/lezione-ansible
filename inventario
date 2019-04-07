@@ -1,8 +1,9 @@
 localhost ansible_connection=local
 
 [macchine_virtuali]
-vm1 ansible_host=10.0.0.1
-vm2 ansible_host=10.0.0.2
+vm1 ansible_host=10.1.1.101
+vm2 ansible_host=10.1.1.102
+vm3 ansible_host=10.1.1.103
 
 [calcolatori]
 localhost

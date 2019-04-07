@@ -8,13 +8,10 @@ Vagrant.configure("2") do |vagrant|
 
 	  config.vm.synced_folder ".", "/vagrant", disabled: true
 
-	  config.vm.network "private_network", ip: "10.33.0.1"
+	  config.vm.network "private_network", ip: "10.1.1.101"
 
 	  config.vm.provider "virtualbox" do |v|
 		  v.name = "lezione-vm1"
-		  v.customize ["modifyvm", :id, "--memory", "1024"]
-		  #v.customize ["modifyvm", :id, "--cpus", "2"]
-		  v.customize ["modifyvm", :id, "--ioapic", "on"]
 	  end
 
 # 	  config.vm.provision "ansible" do |ansible|
@@ -26,12 +23,24 @@ Vagrant.configure("2") do |vagrant|
 
   vagrant.vm.define "vm2" do |config|
 	  config.vm.box = "ubuntu/bionic64"
-	  config.vm.hostname = "vm1.example.local"
+	  config.vm.hostname = "vm2.example.local"
+	  config.vm.synced_folder ".", "/vagrant", disabled: true
+	  config.vm.network "private_network", ip: "10.1.1.102"
 
+	  config.vm.provider "virtualbox" do |v|
+		  v.name = "lezione-vm2"
+	  end
+  end
+
+  vagrant.vm.define "vm3" do |config|
+	  config.vm.box = "ubuntu/bionic64"
+	  config.vm.hostname = "vm3.example.local"
 	  config.vm.synced_folder ".", "/vagrant", disabled: true
 
-	  config.vm.network "private_network", ip: "10.33.0.2"
-
+	  config.vm.network "private_network", ip: "10.1.1.103"
+	  config.vm.provider "virtualbox" do |v|
+		  v.name = "lezione-vm3"
+	  end
   end
 
 
