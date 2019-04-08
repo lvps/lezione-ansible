@@ -37,3 +37,4 @@ pdfa.xmpi
 *.xmpdata
 .desktop
 *.retry
+.vagrant/
