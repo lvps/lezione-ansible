@@ -1,0 +1,23 @@
+---
+# vagrant provision (oppure a mano ma bisogna mettere "hosts: macchine_virtuali" e usare l'utente "vagrant" per accedere)
+- name: "Esempio 0: come ho configurato le macchine virtuali (feat. Vagrant)"
+  hosts: all
+  become: true
+  tasks:
+
+  - name: Ensure user "quel_tale" exists
+    user:
+      # https://docs.ansible.com/ansible/latest/modules/user_module.html
+      name: quel_tale
+      groups:
+      - sudo
+      password: "$6$TkGclvyVl847NeuO$F9fsQ/VbMj29l4egyFKPB.lSpFvWdmfk2Zlp9U0xHoP1ipTu9gjoXMRgQkIqb.aIERVR3ecbsPsABuftYIlTY/"
+      create_home: true
+      shell: /bin/bash
+      state: present
+
+  - name: Set SSH authorized key
+    authorized_key:
+      user: quel_tale
+      state: present
+      key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
