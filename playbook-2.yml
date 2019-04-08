@@ -9,7 +9,8 @@
   tasks:
   - name: Apply MOTD template
     template:
-      src:  "templates/motd.j2"
+      #src:  "templates/motd.j2"
+      src:  "motd.j2"
       dest: "/etc/motd"
       mode: "u=rw,g=r,o=r" # Oppure "644"
       #owner: root
