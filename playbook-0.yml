@@ -5,6 +5,7 @@
   become: true
   tasks:
 
+  # https://stackoverflow.com/a/37334415
   - name: Allow passwordless sudo
     lineinfile:
       dest: /etc/sudoers
@@ -24,6 +25,7 @@
       shell: /bin/bash
       state: present
 
+  # From an example in the manual
   - name: Set SSH authorized key
     authorized_key:
       user: quel_tale
