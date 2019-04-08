@@ -1,0 +1,16 @@
+---
+# ansible-playbook -i inventario playbook-2.yml
+- name: "Esempio 2: template e variabili"
+  hosts: macchine_virtuali
+  become: true
+  vars:
+    saluto: "Ciao"
+
+  tasks:
+  - name: Apply MOTD template
+    template:
+      src:  "templates/motd.j2"
+      dest: "/etc/motd"
+      mode: "u=rw,g=r,o=r" # Oppure "644"
+      #owner: root
+      #group: root
