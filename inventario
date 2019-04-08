@@ -9,3 +9,16 @@ vm3 ansible_host=10.1.1.103
 
 [calcolatori]
 localhost ansible_connection=local
+
+# -----------------------------------------------
+
+# Variabili.
+# Non dovrebbero stare qui, ma facciamola semplice...
+
+[macchine_virtuali:vars]
+ansible_user=quel_tale
+ansible_python_interpreter=/usr/bin/python3
+
+[web:vars]
+ansible_user=quel_tale
+ansible_python_interpreter=/usr/bin/python3

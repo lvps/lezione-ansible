@@ -1,5 +1,5 @@
 ---
-# ansible-playbook -i inventario playbook-1.yaml
+# ansible-playbook -i inventario playbook-1.yml
 - name: "Esempio 1: eseguire un task"
   hosts: macchine_virtuali
   become: true

@@ -5,6 +5,14 @@
   become: true
   tasks:
 
+  - name: Allow passwordless sudo
+    lineinfile:
+      dest: /etc/sudoers
+      state: present
+      regexp: '^%sudo'
+      line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+      validate: 'visudo -cf %s'
+
   - name: Ensure user "quel_tale" exists
     user:
       # https://docs.ansible.com/ansible/latest/modules/user_module.html
