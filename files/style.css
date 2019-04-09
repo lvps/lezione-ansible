@@ -1,0 +1,27 @@
+* {
+	font-family: sans-serif;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	margin: 0;
+	padding: 1.5rem 1rem;
+	/* variante da provare: tomato. */
+	background: cornflowerblue;
+	color: white;
+	text-shadow: 0.1rem 0.1rem 0.2rem black;
+}
+
+p {
+	margin: 0.5rem 1rem;
+}
+
+footer {
+	padding: 2rem 0;
+	background: #333;
+	color: #bbb;
+}

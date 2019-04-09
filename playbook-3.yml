@@ -21,12 +21,24 @@
 
   - name: Configure example website
     copy:
-      src: "example-site.conf.j2"
+      src: example-site.conf
       dest: /etc/nginx/sites-available/example-site.conf
       owner: root
       group: root
       mode: "644"
     notify: reload nginx
+
+  - name: Upload website
+    copy:
+      src: "{{ item }}"
+      dest: /var/www/html
+      owner: root
+      group: root
+      mode: "644"
+    loop:
+      - index.html
+      - style.css
+      - gattone.jpg
 
   - name: Enable example website
     file:

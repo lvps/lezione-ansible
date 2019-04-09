@@ -38,3 +38,4 @@ pdfa.xmpi
 .desktop
 *.retry
 .vagrant/
+roles/

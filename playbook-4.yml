@@ -1,0 +1,37 @@
+---
+# https://galaxy.ansible.com/geerlingguy/nginx
+#
+# ansible-galaxy install geerlingguy.nginx -p roles
+# ansible-playbook -i inventario playbook-4.yml
+- hosts: vm1
+  become: true
+
+  vars:
+    nginx_sendfile: "off"
+    nginx_vhosts:
+    - listen: "80 default_server"
+      server_name: "_"
+      index: "index.html"
+      root: "/var/www/html"
+      template: "{{ nginx_vhost_template }}"
+      filename: "fully-automated-example.conf"
+      state: present
+    - server_name: "_"
+      filename: "default"
+      state: absent
+
+  roles:
+    - { role: geerlingguy.nginx }
+
+  tasks:
+  - name: Upload website
+    copy:
+      src: "{{ item }}"
+      dest: /var/www/html
+      owner: root
+      group: root
+      mode: "644"
+    loop:
+      - index.html
+      - style.css
+      - gattone.jpg
